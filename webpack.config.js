@@ -13,5 +13,5 @@ module.exports = {
             directory: './dist',
             watch: true
         }
-    }
+    },
 };
