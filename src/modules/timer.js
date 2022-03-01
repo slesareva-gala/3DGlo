@@ -1,3 +1,4 @@
+// Компонет. Таймер ( Блок Акции в Заголовке)
 "use strict";
 
 const timer = (deadline) => {
@@ -32,5 +33,5 @@ const timer = (deadline) => {
     }, 1000);
 
 
-};
+}; // END timer()
 export default timer;

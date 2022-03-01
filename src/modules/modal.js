@@ -1,3 +1,4 @@
+// Форма заявки в Блоке Наши услуги
 "use strict";
 
 const modal = () => {
@@ -18,7 +19,7 @@ const modal = () => {
         const maxCountAnimation = Math.round(
             (100 - popupContent.getBoundingClientRect().left * 100 / window.innerWidth));
         // счетчик анимаций, максимальное количество анимаций
-        let countAnimation = 0;
+        let countAnimation = 30;
 
         (function animation() {
             if (countAnimation < maxCountAnimation) {
