@@ -19,12 +19,10 @@ const feedback = () => {
         phone: /[^\d\-()']+/gi,
         // пробелы или дефисы в начале и конце 
         trimSH: /(^[\s\-]+|^)(.*?)(?:([\s\-]+$)|$)/i,
-        // повторяющиеся подряд пробелы
-        multyS: /\s{2,}/g,
-        // повторяющиеся подряд дефисы
-        multyH: /\-{2,}/g,
-        // первая буква слова       
-        firstLower: /(^|\s\-|\s|\-)\S/g,
+        // повторяющиеся подряд пробелы|дефисы 
+        multySH: /(\s{2,})|(\-{2,})/g,
+        // слово с выделением первой буквы
+        wordFirst: /((^|\s\-|\s|\-)[а-я])([а-я]*)/gi,
     };
     userNames.forEach((field) => {
         field.addEventListener('input', (e) => {
@@ -32,13 +30,9 @@ const feedback = () => {
         });
         // дополнительный контроль при потере фокуса 
         field.addEventListener('blur', (e) => {
-            let value = e.target.value;
-            // замена всех букв на маленькие
-            value = value.replace(/.*/g, (str) => str.toLowerCase());
-            // замена первой буквы на большую 
-            value = value.replace(invalid.firstLower,
-                (firstLetter) => firstLetter.toUpperCase());
-            e.target.value = value;
+            // замена первой буквы слова на большую остальные маленькие            
+            e.target.value = e.target.value.replace(invalid.wordFirst,
+                (word, first, f1, other) => first.toUpperCase() + other.toLowerCase());
         });
     });
     userMessage.addEventListener('input', (e) => {
@@ -61,10 +55,9 @@ const feedback = () => {
             let value = e.target.value;
             // удаление ведущих и завершающих пробелов и дефисов
             value = value.replace(invalid.trimSH, (str, begin, sense) => `${sense}`);
-            // замена нескольких идущих подряд пробелов на один 
-            value = value.replace(invalid.multyS, (spaces) => ' ');
-            // замена нескольких идущих подряд дефисов на один
-            value = value.replace(invalid.multyH, (hyphens) => '-');
+            // замена нескольких идущих подряд пробелов|дефисов на один пробел|дефис            
+            value = value.replace(invalid.multySH, (str, spaces, hyphens) =>
+                (spaces ? ' ' : '') + (hyphens ? '-' : ''));
 
             e.target.value = value;
         });
