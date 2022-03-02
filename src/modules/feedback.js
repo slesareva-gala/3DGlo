@@ -16,6 +16,7 @@ const feedback = () => {
     const invalid = {
         text: /[^а-я-\s]+/gi,
         email: /[^a-z\_\-\@\.\!\~\*\']+/gi,
+        rus: /[а-я]/gi,
         phone: /[^\d\-()']+/gi,
         // пробелы или дефисы в начале и конце 
         trimSH: /(^[\s\-]+|^)(.*?)(?:([\s\-]+$)|$)/i,
@@ -46,6 +47,11 @@ const feedback = () => {
     userEmail.forEach((field) => {
         field.addEventListener('input', (e) => {
             e.target.value = e.target.value.replace(invalid.email, "");
+        });
+        // дополнительный контроль на русских диверасантов
+        field.addEventListener('blur', (e) => {
+            // удаление кирилицы
+            e.target.value = e.target.value.replace(invalid.rus, (rus) => "");
         });
     });
 
