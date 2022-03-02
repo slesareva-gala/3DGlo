@@ -7,11 +7,8 @@ const modal = () => {
     const modal = document.querySelector('.popup');
     // контекст модального окна
     const popupContent = modal.querySelector('.popup-content');
-    // кнопки оставить заяку
+    // кнопки подать заяку
     const buttons = document.querySelectorAll('.popup-btn');
-    // кнопка закрытия модального окна
-    const closeBtn = modal.querySelector('.popup-close');
-
 
     // анимация контекста модального окна    
     const animationPopupContent = () => {
@@ -44,9 +41,13 @@ const modal = () => {
         });
     });
 
-    // закрытие заявки (модальное окно)
-    closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
+    modal.addEventListener('click', (e) => {
+        // закрытие заявки (модальное окно)
+        // при нажатии мимо окошка или крестик
+        if (!e.target.closest('.popup-content') ||
+            e.target.classList.contains('popup-close')) {
+            modal.style.display = 'none';
+        }
     });
 
 };  // END modal()
