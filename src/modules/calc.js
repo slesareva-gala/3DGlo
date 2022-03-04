@@ -14,7 +14,7 @@ const calc = (price = 100) => {
     const total = document.getElementById('total');
 
 
-    // анимация отображения итога за 2сек
+    // анимация отображения итога 
     const animationTotal = ([oldValue, newValue]) => {
         animate({
             duration: 500,
