@@ -10,7 +10,8 @@ import slider from './modules/slider';
 timer("31 february 2022 01:15");
 menu();
 modal();
-calc();
+// калькулятор: стоимость одного квадратного метра
+calc(100);
 feedback();
 tabs();
 
@@ -61,13 +62,13 @@ tabs();
                     1500  - по умолчанию
 */
 slider({
-    slider: 'portfolio-content',
-    slide: 'portfolio-item',
-    slideActive: 'portfolio-item-active',
-    button: 'portfolio-btn',
-    buttonPrev: 'prev',
-    buttonNext: 'next',
-    switchList: 'portfolio-dots',
-    switch: 'dot',
-    switchActive: 'dot-active',
+  slider: 'portfolio-content',
+  slide: 'portfolio-item',
+  slideActive: 'portfolio-item-active',
+  button: 'portfolio-btn',
+  buttonPrev: 'prev',
+  buttonNext: 'next',
+  switchList: 'portfolio-dots',
+  switch: 'dot',
+  switchActive: 'dot-active',
 }, 2000);
