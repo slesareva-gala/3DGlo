@@ -7,8 +7,12 @@ const menu = () => {
 
     // блок меню
     const menu = document.querySelector('menu');
+    // кнопка меню
+    const menuPush = document.querySelector('main header .menu');
+    const posStartFloatingMenu = document.querySelector('body .container')
+        .getBoundingClientRect().bottom + window.scrollY;
 
-    // плавный скролл по a.href  (пока, согласно задания, только ВНИЗ !!!)    
+    // плавный скролл по a.href   
     const smoothScroll = (e, href) => {
         e.preventDefault();
 
@@ -48,6 +52,20 @@ const menu = () => {
         // плавный скролл по нажатию на пункт меню        
         if (itemMenu) { smoothScroll(e, itemMenu.getAttribute("href")); }
     });
+
+    // плавающая кнопка меню
+    window.addEventListener('scroll', (e) => {
+        if (window.scrollY > posStartFloatingMenu) {
+            menuPush.style.position = 'fixed';
+            menuPush.style.top = '0';
+            menuPush.style.right = '0';
+            menuPush.style.zIndex = '1';
+            menuPush.style.opacity = '0.5';
+            menuPush.style.backgroundColor = 'var(--dark)';
+            menuPush.style.maxWidth = Math.round(80 / window.devicePixelRatio) + 'px';
+        } else if (menuPush.style) { menuPush.style = ""; }
+    });
+
 
 }; // END menu()
 export default menu;
