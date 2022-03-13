@@ -35,6 +35,7 @@ const feedback = () => {
         form.addEventListener('input', (e) => {
             if (e.target.matches('input') && e.target.name in valid) {
                 e.target.value = e.target.value.replace(valid[e.target.name], "");
+                e.target.style.boxShadow = '';
             }
         });
 

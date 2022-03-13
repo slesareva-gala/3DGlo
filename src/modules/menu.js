@@ -5,6 +5,9 @@ import { animate } from './helpers';
 
 const menu = () => {
 
+    // панель заголовка
+    const header = document.querySelector('.main-header');
+
     // блок меню
     const menu = document.querySelector('menu');
     // кнопка меню
@@ -31,6 +34,19 @@ const menu = () => {
         });
     };
 
+    // изменение положения плавающего меню
+    const reFloatingMenu = () => {
+        if (window.scrollY > posStartFloatingMenu) {
+            menuPush.style.position = 'fixed';
+            menuPush.style.top = '10px';
+            menuPush.style.right = Math.max(10, window.innerWidth - header.offsetLeft - header.offsetWidth - 90) + 'px';
+            menuPush.style.zIndex = '1';
+            menuPush.style.opacity = '0.5';
+            menuPush.style.backgroundColor = 'var(--dark)';
+            menuPush.style.maxWidth = Math.round(80 / window.devicePixelRatio) + 'px';
+        } else if (menuPush.style) { menuPush.style = ""; }
+    };
+
     document.querySelector('body').addEventListener('click', (e) => {
         let itemMenu = null, nextBlock;
 
@@ -53,19 +69,14 @@ const menu = () => {
         if (itemMenu) { smoothScroll(e, itemMenu.getAttribute("href")); }
     });
 
+
     // плавающая кнопка меню
     window.addEventListener('scroll', (e) => {
-        if (window.scrollY > posStartFloatingMenu) {
-            menuPush.style.position = 'fixed';
-            menuPush.style.top = '0';
-            menuPush.style.right = '0';
-            menuPush.style.zIndex = '1';
-            menuPush.style.opacity = '0.5';
-            menuPush.style.backgroundColor = 'var(--dark)';
-            menuPush.style.maxWidth = Math.round(80 / window.devicePixelRatio) + 'px';
-        } else if (menuPush.style) { menuPush.style = ""; }
+        reFloatingMenu();
     });
-
+    window.addEventListener('resize', (e) => {
+        reFloatingMenu();
+    });
 
 }; // END menu()
 export default menu;

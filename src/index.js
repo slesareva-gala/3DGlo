@@ -34,7 +34,9 @@ slider({
 sendForm('https://jsonplaceholder.typicode.com/posts',
   {
     // акция
-    form1: [{ name: "form", assign: "form1" }],
+    form1: [{ name: "form", assign: "form1" },
+    { name: "total", select: "#total", assign: "textContent" }
+    ],
     // вопросы
     form2: [
       { name: "form", assign: "form2" },
