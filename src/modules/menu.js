@@ -55,6 +55,7 @@ const menu = () => {
             (itemMenu = e.target.closest('menu ul>li>a')) ||    // по нажатию на пункт меню
             (!e.target.closest('.active-menu') &&           // по нажатии мимо окошка или крестик
                 menu.classList.contains('active-menu'))) {
+            e.preventDefault();
 
             // открытие/закрытие меню 
             menu.classList.toggle('active-menu');
