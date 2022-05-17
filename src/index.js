@@ -9,7 +9,7 @@ import slider from './modules/slider';
 import sendForm from './modules/sendForm';
 
 // таймер параметры: дата окончания акции
-timer("31 march 2022 01:15");
+timer("31 march 2023 01:15");
 menu();
 modal();
 // калькулятор параметры: стоимость одного квадратного метра
