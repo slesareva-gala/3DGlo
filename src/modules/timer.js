@@ -22,6 +22,7 @@ const timer = (deadline) => {
     // обновление времени
     const updateClock = setInterval(() => {
         let getTime = getTimeRemaining();
+        console.log(getTime);
 
         timerHours.textContent = (getTime.hours < 10) ? '0' + getTime.hours : getTime.hours;
         timerMinutes.textContent = ('0' + getTime.minutes).slice(-2);
