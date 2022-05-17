@@ -10,6 +10,7 @@ const timer = (deadline) => {
     const getTimeRemaining = () => {
         let dateStop = new Date(deadline).getTime();
         let dateNow = new Date().getTime();
+        alert(dateStop, dateNow);
         // количество секунд до дейдлайна мСек/ 1000
         let timeRemaining = Math.max((dateStop - dateNow) / 1000, 0);
         let hours = Math.floor(timeRemaining / 60 / 60);
